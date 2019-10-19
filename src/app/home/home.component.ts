@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     email:"",
     password:""
   };
-
+ 
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,15 +22,22 @@ export class HomeComponent implements OnInit {
 
   signIn(): void {
     console.log("(SIGN IN)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
-    this.httpClient.post('https://localhost:44385/',this.manager).subscribe(
-      (data:any)=>{
-        console.log("DATA="+data);
+    this.httpClient.get(`http://192.168.1.35:52440/user/${this.manager.email}`).subscribe(
+      (dbPassword:any)=>{
+        if(dbPassword==this.manager.password){
+            
+        }
       }
     )
 
   }
   signUp(): void {
     console.log("(SIGN UP)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
+        this.httpClient.post(`http://192.168.1.35:52440/`,this.manager).subscribe(
+      (data:any)=>{
+        console.log("DATA="+data);
+      }
+    )
   }
 
 }
