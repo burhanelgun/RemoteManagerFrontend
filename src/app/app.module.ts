@@ -11,11 +11,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { JoblistComponent } from './joblist/joblist.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      HomeComponent
+      HomeComponent,
+      DashboardComponent,
+      JoblistComponent
    ],
    imports: [
       BrowserModule,
