@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JoblistComponent } from './joblist/joblist.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
    declarations: [
@@ -32,7 +33,7 @@ import { JoblistComponent } from './joblist/joblist.component';
       FormsModule,
       HttpClientModule
    ],
-   providers: [],
+   providers: [AuthGuard,HomeComponent],
    bootstrap: [
       AppComponent
    ]

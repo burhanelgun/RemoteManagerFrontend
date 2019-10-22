@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Manager } from '../Manager';
 import {HttpClient} from '@angular/common/http';
 import { CanActivate, Router } from '@angular/router';
@@ -8,14 +8,15 @@ import { CanActivate, Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
 
   manager: Manager ={
     email:"",
     password:""
   };
-  router: Router
-
+  router: Router;
+  isAuth: boolean=false;
 
   constructor(private httpClient: HttpClient) {
    }
@@ -31,6 +32,12 @@ export class HomeComponent implements OnInit {
       (dbPassword:any)=>{
         if(dbPassword==this.manager.password){
           console.log("dbPassword="+dbPassword)
+          console.log("isAuth is true")
+            this.isAuth=true;
+        }
+        else{
+          console.log("isAuth is false")
+          this.isAuth=false;
         }
       }
     )
