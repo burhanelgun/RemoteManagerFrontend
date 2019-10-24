@@ -3,24 +3,26 @@ import {Router} from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
+  isAuth:boolean=false;
 
   constructor(
-    private router: Router,private homeComponent: HomeComponent
-  ) { }
+    private router: Router
+  ) { 
+    console.log("auth service start")
+
+  }
 
 
   isLoggedIn(): boolean {
-    if (this.homeComponent.isAuth) {
-    console.log("RETURN TRUE")
+    console.log("this.isAuth:"+this.isAuth);
+    if (this.isAuth) {
+      console.log("IS LOGGEDIN RETURN TRUE");
       return true;
     } else {
-        console.log("RETURN FALSE")
-
+      console.log("IS LOGGEDIN RETURN FALSE")
       return false;
     }
   }

@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JoblistComponent } from './joblist/joblist.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
    declarations: [
@@ -31,9 +33,10 @@ import { AuthGuard } from './guards/auth.guard';
       MatTabsModule,
       MatButtonModule,
       FormsModule,
-      HttpClientModule
+      HttpClientModule,
+      MatCardModule
    ],
-   providers: [AuthGuard,HomeComponent],
+   providers: [AuthGuard,AuthService],
    bootstrap: [
       AppComponent
    ]
