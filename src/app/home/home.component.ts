@@ -30,22 +30,24 @@ export class HomeComponent implements OnInit {
   
 signIn():void {
     console.log("(SIGN IN)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
-   this.httpClient.post(`http://192.168.1.35:52440/user/signin`,this.manager).subscribe(
+   this.httpClient.post(`http://192.168.1.37:52440/user/signin`,this.manager).subscribe(
       (data:any)=>{
         console.log("DATAB="+data);
         if(data=="Signed in"){
           console.log("Signed in block entered");
           this.authService.isAuth=true;
+          console.log("navigate dashboard start");
+          this.router.navigate(['dashboard']);
+          console.log("navigated dashboard done");
           console.log("this.homeComponent.isAuth setted true")
 
         }
         else{
           this.authService.isAuth=false;
+          this.router.navigate(['joblist']);
           console.log("this.homeComponent.isAuth setted false")
         }
-        console.log("navigate dashboard start");
-        this.router.navigate(['dashboard']);
-        console.log("navigated dashboard done");
+
   
       });
 
