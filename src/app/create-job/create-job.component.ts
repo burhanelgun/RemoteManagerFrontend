@@ -33,27 +33,25 @@ handleExecutableFileInput(files: FileList) {
   this.job.executableFile = files.item(0);
 }
 uploadFileToActivity() {
-   this.uploadFile(this.job.commandFile,"uploadCommandFile");
-   this.uploadFile(this.job.parametersFile,"uploadParametersFile");
-   this.uploadFile(this.job.executableFile,"uploadExecutableFile");
+   //this.uploadFile(this.job.commandFile,"uploadCommandFile");
+ /*  this.uploadFile(this.job.parametersFile,"uploadParametersFile");
+   this.uploadFile(this.job.executableFile,"uploadExecutableFile");*/
 }
 
 
 
-public uploadFile = (file,endpoint) => {
-
-  if (file.length === 0) {
-    return;
-  }
-
-  let fileToUpload = <File>file;
-  console.log("fileToUpload:"+fileToUpload);
-
+public uploadFile = () => {
 
   const formData = new FormData();
-  formData.append('file', fileToUpload, fileToUpload.name);
+  formData.append('name', this.job.jobName);
+  formData.append('commandFile',  this.job.commandFile);
+  formData.append('parametersFile',  this.job.parametersFile);
+  formData.append('executableFile',  this.job.executableFile);
 
-  this.httpClient.post(`http://192.168.1.38:52440/${endpoint}`, formData, {reportProgress: true, observe: 'events'})
+
+
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  this.httpClient.post(`http://192.168.1.38:52440/createjob`, formData, {reportProgress: true, observe: 'events'})
     .subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);
@@ -63,6 +61,8 @@ public uploadFile = (file,endpoint) => {
       }
     });
 }
+
+
 
 
 }
