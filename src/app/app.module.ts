@@ -16,13 +16,17 @@ import { JoblistComponent } from './joblist/joblist.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import {MatCardModule} from '@angular/material/card';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
+import { CreateJobComponent } from './create-job/create-job.component';
+
 
 @NgModule({
    declarations: [
       AppComponent,
       HomeComponent,
       DashboardComponent,
-      JoblistComponent
+      JoblistComponent,
+      CreateJobComponent
    ],
    imports: [
       BrowserModule,
@@ -34,9 +38,23 @@ import {MatCardModule} from '@angular/material/card';
       MatButtonModule,
       FormsModule,
       HttpClientModule,
-      MatCardModule
+      MatCardModule,
+      MatToolbarModule,
+      MatIconModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      AppRoutingModule,
+      MatToolbarModule,
+      MatButtonModule,
+      MatIconModule,
+      MatListModule,
+      MatSidenavModule
    ],
-   providers: [AuthGuard,AuthService],
+   providers: [
+      AuthGuard,
+      AuthService
+   ],
    bootstrap: [
       AppComponent
    ]

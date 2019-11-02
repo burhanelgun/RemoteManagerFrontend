@@ -1,0 +1,11 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+  }
+  
+  .sign-button button{
+    width: 50%;
+  }
+  

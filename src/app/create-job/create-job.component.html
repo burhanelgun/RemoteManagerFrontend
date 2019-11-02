@@ -1,0 +1,34 @@
+<div class="example-container">
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="job.jobName" placeholder="Job Name">
+  </mat-form-field>
+
+  
+  <div class="form-group">
+      <label for="file">Choose File</label>
+      <input type="file"
+             id="file"
+             (change)="handleCommandFileInput($event.target.files)">
+  </div>
+
+  <div class="form-group">
+      <label for="file">Choose File</label>
+      <input type="file"
+             id="file"
+             (change)="handleParametersFileInput($event.target.files)">
+  </div>
+
+  <div class="form-group">
+      <label for="file">Choose File</label>
+      <input type="file"
+             id="file"
+             (change)="handleExecutableFileInput($event.target.files)">
+  </div>
+
+  <div class="sign-button">
+  <button mat-raised-button (click)="uploadFileToActivity()" color="primary" >Create job</button>
+  </div>
+
+</div>
+

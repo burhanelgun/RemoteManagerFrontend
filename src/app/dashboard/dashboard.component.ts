@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
  
-    this.httpClient.post(`http://192.168.1.37:52440/file`, formData, {reportProgress: true, observe: 'events'})
+    this.httpClient.post(`http://192.168.1.38:52440/UploadFiles`, formData, {reportProgress: true, observe: 'events'})
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
