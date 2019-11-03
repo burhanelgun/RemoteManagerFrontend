@@ -7,6 +7,7 @@ import { HomeComponent } from '../home/home.component';
 export class AuthService {
 
   isAuth:boolean=false;
+  email:string;
 
   constructor(
     private router: Router

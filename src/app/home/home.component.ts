@@ -36,6 +36,7 @@ signIn():void {
         if(data=="Signed in"){
           console.log("Signed in block entered");
           this.authService.isAuth=true;
+          this.authService.email=this.manager.email;
           console.log("navigate dashboard start");
           this.router.navigate(['dashboard']);
           console.log("navigated dashboard done");
