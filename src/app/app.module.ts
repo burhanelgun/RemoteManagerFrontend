@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import {MatCardModule} from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
 import { CreateJobComponent } from './create-job/create-job.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { CreateJobComponent } from './create-job/create-job.component';
       MatButtonModule,
       MatIconModule,
       MatListModule,
-      MatSidenavModule
+      MatSidenavModule,
+      MatRadioModule
    ],
    providers: [
       AuthGuard,

@@ -8,4 +8,19 @@
   .sign-button button{
     width: 50%;
   }
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-bottom: 16px;
+    margin-top: 16px;
+    margin-left: 16px;
+
+  }
   
+  .form-group{
+    margin-top: 16px;
+  }
+
+  
+.sign-button{
+  margin-top: 16px;
+}

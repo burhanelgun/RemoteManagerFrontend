@@ -1,13 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="authService.isLoggedIn()">
     <mat-toolbar-row>
       <h1>Remote Manager</h1>
       <div>
         <a mat-button [routerLink]="'/create-job'"> Create Job </a>
-        <a mat-button [routerLink]="'/joblist'"> Job List </a>
+       <!-- <a mat-button [routerLink]="'/joblist'"> Job List </a>
         <a mat-button [routerLink]="'/contacts'"> Job Status </a>
         <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
         <a mat-button [routerLink]="'/activities'"> Activities </a>
-        <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
+        <a mat-button [routerLink]="'/create-activity'"> Create Activity </a> -->
   
       </div>
     </mat-toolbar-row>

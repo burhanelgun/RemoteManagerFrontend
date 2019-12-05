@@ -4,23 +4,27 @@
     <input matInput [(ngModel)]="job.jobName" placeholder="Job Name">
   </mat-form-field>
 
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="Executable">Executable</mat-radio-button>
+    <mat-radio-button value="Archiver">Archiver</mat-radio-button>
+  </mat-radio-group>
   
   <div class="form-group">
-      <label for="file">Choose File</label>
+      <label for="file">Choose Command File</label>
       <input type="file"
              id="file"
              (change)="handleCommandFileInput($event.target.files)">
   </div>
 
   <div class="form-group">
-      <label for="file">Choose File</label>
+      <label for="file">Choose Parameters File</label>
       <input type="file"
              id="file"
              (change)="handleParametersFileInput($event.target.files)">
   </div>
 
   <div class="form-group">
-      <label for="file">Choose File</label>
+      <label for="file">Choose Executable File</label>
       <input type="file"
              id="file"
              (change)="handleExecutableFileInput($event.target.files)">

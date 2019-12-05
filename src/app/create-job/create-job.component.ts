@@ -52,7 +52,7 @@ public uploadFile = () => {
   formData.append('parametersFile',  this.job.parametersFile);
   formData.append('executableFile',  this.job.executableFile);
 
-  this.httpClient.post(`http://192.168.1.38:52440/createjob`, formData, {reportProgress: true, observe: 'events'})
+  this.httpClient.post(`http://192.168.1.37:52440/createjob`, formData, {reportProgress: true, observe: 'events'})
     .subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);
