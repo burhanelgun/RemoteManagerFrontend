@@ -4,35 +4,46 @@
     <input matInput [(ngModel)]="job.jobName" placeholder="Job Name">
   </mat-form-field>
 
-  <mat-radio-group aria-label="Select an option">
-    <mat-radio-button value="Executable">Executable</mat-radio-button>
-    <mat-radio-button value="Archiver">Archiver</mat-radio-button>
+  <mat-radio-group aria-label="Select an option" *ngFor="let jobType of jobTypes"  [(ngModel)]="job.type">
+    <mat-radio-button [value]="jobType" >{{jobType}}</mat-radio-button>
   </mat-radio-group>
   
-  <div class="form-group">
+  <div class="executable-form" *ngIf="job.type=='Executable'">
+    <div class="form-group">
       <label for="file">Choose Command File</label>
       <input type="file"
              id="file"
              (change)="handleCommandFileInput($event.target.files)">
-  </div>
+    </div>
 
-  <div class="form-group">
-      <label for="file">Choose Parameters File</label>
-      <input type="file"
-             id="file"
-             (change)="handleParametersFileInput($event.target.files)">
-  </div>
+    <div class="form-group">
+        <label for="file">Choose Parameters File</label>
+        <input type="file"
+              id="file"
+              (change)="handleParametersFileInput($event.target.files)">
+    </div>
 
-  <div class="form-group">
-      <label for="file">Choose Executable File</label>
-      <input type="file"
-             id="file"
-             (change)="handleExecutableFileInput($event.target.files)">
-  </div>
+    <div class="form-group">
+        <label for="file">Choose Executable File</label>
+        <input type="file"
+              id="file"
+              (change)="handleExecutableFileInput($event.target.files)">
+    </div>
 
-  <div class="sign-button">
-  <button mat-raised-button (click)="uploadFile()" color="primary" >Create job</button>
-  </div>
+    <div class="sign-button">
+      <button mat-raised-button (click)="uploadExecutableJobFiles()" color="primary" >Create job</button>
+    </div>
 
+  </div>
+  
+
+  <div class="executable-form" *ngIf="job.type=='Archiver'">
+    <input type="file" webkitdirectory directory multiple 
+          id="file"
+          (change)="handleArchiveFolder($event.target.files)">
+
+    <div class="sign-button">
+      <button mat-raised-button (click)="uploadArchiveJobFolder()" color="primary" >Create job</button>
+    </div>
 </div>
 

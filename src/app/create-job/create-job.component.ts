@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, EventEmitter, Output } from '@angular/core';
-import { CreateJob } from '../CreateJob';
+import { Job } from '../Job';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { HomeComponent } from '../home/home.component';
@@ -18,11 +18,15 @@ export class CreateJobComponent implements OnInit {
   public message: string;
   @Output() public onUploadFinished = new EventEmitter();
 
-  job: CreateJob =new CreateJob();
+  job: Job =new Job();
+  public jobTypes = ['Executable', 'Archiver'];
+
 
   constructor(private httpClient: HttpClient,private authService: AuthService) { }
 
   ngOnInit() {
+    //default job type is Executable
+    this.job.type=this.jobTypes[0];
   }
 
 handleCommandFileInput(files: FileList) {
@@ -34,6 +38,11 @@ handleParametersFileInput(files: FileList) {
 handleExecutableFileInput(files: FileList) {
   this.job.executableFile = files.item(0);
 }
+
+handleArchiveFolder(fileList: FileList) {
+  this.job.files=fileList;
+}
+
 uploadFileToActivity() {
    //this.uploadFile(this.job.commandFile,"uploadCommandFile");
  /*  this.uploadFile(this.job.parametersFile,"uploadParametersFile");
@@ -42,7 +51,7 @@ uploadFileToActivity() {
 
 
 
-public uploadFile = () => {
+public uploadExecutableJobFiles = () => {
 
   const formData = new FormData();
   console.log("tto:"+this.authService.email);
@@ -51,8 +60,35 @@ public uploadFile = () => {
   formData.append('commandFile',  this.job.commandFile);
   formData.append('parametersFile',  this.job.parametersFile);
   formData.append('executableFile',  this.job.executableFile);
+  formData.append('jobType',  this.job.type);
 
-  this.httpClient.post(`http://192.168.1.37:52440/createjob`, formData, {reportProgress: true, observe: 'events'})
+  this.httpClient.post(`http://192.168.1.37:52440/createexecutablejob`, formData, {reportProgress: true, observe: 'events'})
+    .subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress)
+        this.progress = Math.round(100 * event.loaded / event.total);
+      else if (event.type === HttpEventType.Response) {
+        this.message = 'Upload success.';
+        this.onUploadFinished.emit(event.body);
+      }
+    });
+}
+
+public uploadArchiveJobFolder = () => {
+
+  const formData = new FormData();
+  console.log("tto:"+this.authService.email);
+  formData.append('email',this.authService.email );
+  formData.append('name', this.job.jobName);
+  formData.append('jobType',  this.job.type);
+
+
+  for (var i = 0; i < this.job.files.length; i++) {
+    formData.append("folders",  this.job.files.item(i));
+    //console.log("folders = "+ this.job.files.item(i));
+
+  }
+
+  this.httpClient.post(`http://192.168.1.37:52440/createarchiverjob`, formData, {reportProgress: true, observe: 'events'})
     .subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);
