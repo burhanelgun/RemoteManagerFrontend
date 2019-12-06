@@ -12,13 +12,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { JoblistComponent } from './joblist/joblist.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import {MatCardModule} from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
 import { CreateJobComponent } from './create-job/create-job.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { MyJobsComponent } from './my-jobs/my-jobs.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatRippleModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -26,8 +28,8 @@ import {MatRadioModule} from '@angular/material/radio';
       AppComponent,
       HomeComponent,
       DashboardComponent,
-      JoblistComponent,
-      CreateJobComponent
+      CreateJobComponent,
+      MyJobsComponent
    ],
    imports: [
       BrowserModule,
@@ -51,7 +53,9 @@ import {MatRadioModule} from '@angular/material/radio';
       MatIconModule,
       MatListModule,
       MatSidenavModule,
-      MatRadioModule
+      MatRadioModule,
+      MatTableModule,
+      MatRippleModule
    ],
    providers: [
       AuthGuard,
