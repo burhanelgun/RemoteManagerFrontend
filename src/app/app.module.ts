@@ -21,6 +21,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import { MyJobsComponent } from './my-jobs/my-jobs.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatRippleModule} from '@angular/material/core';
+import { JobComponent } from './job/job.component';
+import { JobService } from './services/job.service';
+import { DownloadJobService } from './services/download-job.service';
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import {MatRippleModule} from '@angular/material/core';
       HomeComponent,
       DashboardComponent,
       CreateJobComponent,
-      MyJobsComponent
+      MyJobsComponent,
+      JobComponent
    ],
    imports: [
       BrowserModule,
@@ -59,7 +63,9 @@ import {MatRippleModule} from '@angular/material/core';
    ],
    providers: [
       AuthGuard,
-      AuthService
+      AuthService,
+      JobService,
+      DownloadJobService
    ],
    bootstrap: [
       AppComponent

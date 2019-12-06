@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { Job } from '../Job';
+import { JobService } from '../services/job.service';
 
 @Component({
   selector: 'app-my-jobs',
@@ -15,7 +16,7 @@ export class MyJobsComponent implements OnInit {
   private jobs =[]; 
   displayedColumns: string[] = ['id', 'name', 'isDone', 'type','managerName','clientName','path'];
 
-  constructor(private httpClient: HttpClient,private authService: AuthService) { }
+  constructor(private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
 
 
   ngOnInit() {
@@ -32,8 +33,10 @@ export class MyJobsComponent implements OnInit {
 
   }
 
-  getRecord(r :string){
-    console.log("hahaha:"+r);
+  getRecord(jobName :string){
+
+    this.jobService.jobName = jobName;
+
 
   }
 
