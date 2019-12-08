@@ -15,7 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import {MatCardModule} from '@angular/material/card';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatDialogModule } from  '@angular/material';
 import { CreateJobComponent } from './create-job/create-job.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { MyJobsComponent } from './my-jobs/my-jobs.component';
@@ -24,6 +24,8 @@ import {MatRippleModule} from '@angular/material/core';
 import { JobComponent } from './job/job.component';
 import { JobService } from './services/job.service';
 import { DownloadJobService } from './services/download-job.service';
+import { ManageClientsComponent } from './manage-clients/manage-clients.component';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { DownloadJobService } from './services/download-job.service';
       DashboardComponent,
       CreateJobComponent,
       MyJobsComponent,
-      JobComponent
+      JobComponent,
+      ManageClientsComponent,
+      DialogBoxComponent
    ],
    imports: [
       BrowserModule,
@@ -59,7 +63,21 @@ import { DownloadJobService } from './services/download-job.service';
       MatSidenavModule,
       MatRadioModule,
       MatTableModule,
-      MatRippleModule
+      MatRippleModule,
+      MatTableModule, 
+      MatDialogModule, 
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      FormsModule,
+      MatTableModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonModule,
+      MatInputModule
    ],
    providers: [
       AuthGuard,
@@ -69,6 +87,9 @@ import { DownloadJobService } from './services/download-job.service';
    ],
    bootstrap: [
       AppComponent
-   ]
+   ],
+   entryComponents: [
+      DialogBoxComponent
+    ],
 })
 export class AppModule { }

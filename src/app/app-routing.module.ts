@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyJobsComponent } from './my-jobs/my-jobs.component';
 import { CreateJobComponent } from './create-job/create-job.component';
 import { JobComponent } from './job/job.component';
+import { ManageClientsComponent } from './manage-clients/manage-clients.component';
 
 import {AuthGuard} from './guards/auth.guard';
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'my-jobs', component: MyJobsComponent},
   { path: 'create-job', component: CreateJobComponent},
-  { path: 'job',  component:JobComponent }
+  { path: 'job',  component:JobComponent },
+  { path: 'manage-clients',  component:ManageClientsComponent }
 
 
 ];
