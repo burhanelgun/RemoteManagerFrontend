@@ -4,46 +4,50 @@
     <input matInput [(ngModel)]="job.jobName" placeholder="Job Name">
   </mat-form-field>
 
-  <mat-radio-group aria-label="Select an option" *ngFor="let jobType of jobTypes"  [(ngModel)]="job.type">
+  <mat-radio-group class="example-radio-group" aria-label="Select an option" *ngFor="let jobType of jobTypes"  [(ngModel)]="job.type">
     <mat-radio-button [value]="jobType" >{{jobType}}</mat-radio-button>
   </mat-radio-group>
-  
-  <div class="executable-form" *ngIf="job.type=='Executable'">
-    <div class="form-group">
-      <label for="file">Choose Command File</label>
-      <input type="file"
-             id="file"
-             (change)="handleCommandFileInput($event.target.files)">
-    </div>
 
-    <div class="form-group">
-        <label for="file">Choose Parameters File</label>
+
+  <mat-card> 
+    <div class="executable-form" *ngIf="job.type=='Run Executable'">
+      <div class="form-group">
+        <label for="file">Choose Command File</label>
         <input type="file"
               id="file"
-              (change)="handleParametersFileInput($event.target.files)">
-    </div>
+              (change)="handleCommandFileInput($event.target.files)">
+      </div>
 
-    <div class="form-group">
-        <label for="file">Choose Executable File</label>
-        <input type="file"
-              id="file"
-              (change)="handleExecutableFileInput($event.target.files)">
-    </div>
 
-    <div class="sign-button">
-      <button mat-raised-button (click)="uploadExecutableJobFiles()" color="primary" >Create job</button>
-    </div>
 
+      <div class="form-group">
+          <label for="file">Choose Parameters File</label>
+          <input type="file"
+                id="file"
+                (change)="handleParametersFileInput($event.target.files)">
+      </div>
+
+      <div class="form-group">
+          <label for="file">Choose Executable File</label>
+          <input type="file"
+                id="file"
+                (change)="handleExecutableFileInput($event.target.files)">
+      </div>
+
+      <div class="sign-button">
+        <button mat-raised-button (click)="uploadExecutableJobFiles()" color="primary" >Create job</button>
+      </div>
+
+    </div>
+    
+
+    <div class="executable-form" *ngIf="job.type=='Make Archive'">
+      <input type="file" webkitdirectory directory multiple 
+            id="file"
+            (change)="handleArchiveFolder($event.target.files)">
+
+      <div class="sign-button">
+        <button mat-raised-button (click)="uploadArchiveJobFolder()" color="primary" >Create job</button>
+      </div>
   </div>
-  
-
-  <div class="executable-form" *ngIf="job.type=='Archiver'">
-    <input type="file" webkitdirectory directory multiple 
-          id="file"
-          (change)="handleArchiveFolder($event.target.files)">
-
-    <div class="sign-button">
-      <button mat-raised-button (click)="uploadArchiveJobFolder()" color="primary" >Create job</button>
-    </div>
-</div>
-
+</mat-card>

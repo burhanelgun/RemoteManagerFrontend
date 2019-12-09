@@ -19,7 +19,9 @@ export class CreateJobComponent implements OnInit {
   @Output() public onUploadFinished = new EventEmitter();
 
   job: Job =new Job();
-  public jobTypes = ['Executable', 'Archiver'];
+  public jobTypes = ['Run Executable', 'Make Archive'];
+  public inputTypeForCommandFile = ['From File', 'From UI'];
+  public inputTypeForParameterFile = ['From File', 'From UI'];
 
 
   constructor(private httpClient: HttpClient,private authService: AuthService) { }
@@ -42,13 +44,6 @@ handleExecutableFileInput(files: FileList) {
 handleArchiveFolder(fileList: FileList) {
   this.job.files=fileList;
 }
-
-uploadFileToActivity() {
-   //this.uploadFile(this.job.commandFile,"uploadCommandFile");
- /*  this.uploadFile(this.job.parametersFile,"uploadParametersFile");
-   this.uploadFile(this.job.executableFile,"uploadExecutableFile");*/
-}
-
 
 
 public uploadExecutableJobFiles = () => {
