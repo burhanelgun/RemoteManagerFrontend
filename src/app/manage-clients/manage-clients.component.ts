@@ -64,7 +64,7 @@ export class ManageClientsComponent implements OnInit {
   }
  
   addRowData(row_obj){
-    
+    row_obj.jobCount=0;
     this.dataSource.push({
       name:row_obj.name,
       ip:row_obj.ip,
