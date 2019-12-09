@@ -14,7 +14,7 @@ export class MyJobsComponent implements OnInit {
 
   //Job objelerinin json a çevirlmiş halidir
   private jobs =[]; 
-  displayedColumns: string[] = ['id', 'name', 'isDone', 'type','managerName','clientName','path'];
+  displayedColumns: string[] = ['name', 'isDone', 'type','clientName'];
 
   constructor(private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
 
