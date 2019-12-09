@@ -14,14 +14,17 @@ export class MyJobsComponent implements OnInit {
 
   //Job objelerinin json a çevirlmiş halidir
   private jobs =[]; 
-  displayedColumns: string[] = ['name', 'isDone', 'type','clientName'];
+  displayedColumns: string[] = ['name', 'status', 'type','clientName'];
+  interval: any;
 
   constructor(private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
 
 
   ngOnInit() {
-
     this.getJobs();
+    this.interval = setInterval(() => { 
+      this.getJobs();
+    }, 5000);
   }
 
 
@@ -39,6 +42,8 @@ export class MyJobsComponent implements OnInit {
 
 
   }
+
+  
 
 
 }
