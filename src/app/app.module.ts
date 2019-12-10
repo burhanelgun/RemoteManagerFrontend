@@ -27,6 +27,7 @@ import { DownloadJobService } from './services/download-job.service';
 import { ManageClientsComponent } from './manage-clients/manage-clients.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { IpService } from './services/ip.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { IpService } from './services/ip.service';
       MatFormFieldModule,
       MatInputModule,
       MatButtonModule,
-      MatInputModule
+      MatInputModule,
+      ReactiveFormsModule
    ],
    providers: [
       AuthGuard,

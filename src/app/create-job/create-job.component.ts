@@ -5,6 +5,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../services/auth.service';
 import { IpService } from '../services/ip.service';
+import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-create-job',
@@ -20,17 +21,35 @@ export class CreateJobComponent implements OnInit {
   @Output() public onUploadFinished = new EventEmitter();
 
   job: Job =new Job();
+  public command: string;
   public jobTypes = ['Run Executable', 'Make Archive'];
-  public inputTypeForCommandFile = ['From File', 'From UI'];
-  public inputTypeForParameterFile = ['From File', 'From UI'];
+  public executableJobTypes = ['Run Single Executable', 'Run Executable With Different Parameters'];
+  public selectedJobType = this.jobTypes[0];
+
+  productForm: FormGroup;
 
 
-  constructor(public ipService: IpService,private httpClient: HttpClient,private authService: AuthService) { }
+  constructor(private fb: FormBuilder,public ipService: IpService,private httpClient: HttpClient,private authService: AuthService) { }
 
   ngOnInit() {
     //default job type is Executable
-    this.job.type=this.jobTypes[0];
+    this.job.type=this.executableJobTypes[0];
+    this.productForm = this.fb.group({
+      parameter_sets: this.fb.array([this.fb.group({point:''})])
+    })
   }
+  get parameterSets() {
+    return this.productForm.get('parameter_sets') as FormArray;
+  }
+
+  addParameterSet() {
+    this.parameterSets.push(this.fb.group({point:''}));
+  }
+
+  deleteParameterSet(index) {
+    this.parameterSets.removeAt(index);
+  }
+
 
 handleCommandFileInput(files: FileList) {
     this.job.commandFile = files.item(0);
@@ -75,8 +94,8 @@ public uploadArchiveJobFolder = () => {
   console.log("tto:"+this.authService.email);
   formData.append('email',this.authService.email );
   formData.append('name', this.job.jobName);
-  formData.append('jobType',  this.job.type);
-
+  formData.append('executableFile',  this.job.executableFile);
+  formData.append('jobType',  this.selectedJobType);
 
   for (var i = 0; i < this.job.files.length; i++) {
     formData.append("folders",  this.job.files.item(i));
@@ -95,6 +114,33 @@ public uploadArchiveJobFolder = () => {
     });
 }
 
+public createDifferentParamExecutables = () => {
+
+  const formData = new FormData();
+  formData.append('email',this.authService.email );
+  formData.append('name', this.job.jobName);
+  formData.append('command', this.command);
+  formData.append('executableFile',  this.job.executableFile);
+  formData.append('jobType',  this.job.type);
+
+
+  for (var i = 0; i < this.parameterSets.length; i++) {
+    console.log("folders = "+ this.productForm.value.parameter_sets[i].point);
+
+    formData.append("parameterSets",  this.productForm.value.parameter_sets[i].point);
+
+  }
+
+  this.httpClient.post(`http://${this.ipService.ip}:52440/createdifferentparamexecutables`, formData, {reportProgress: true, observe: 'events'})
+    .subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress)
+        this.progress = Math.round(100 * event.loaded / event.total);
+      else if (event.type === HttpEventType.Response) {
+        this.message = 'Upload success.';
+        this.onUploadFinished.emit(event.body);
+      }
+    });
+}
 
 
 

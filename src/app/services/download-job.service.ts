@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { JobService } from './job.service';
 import { map} from 'rxjs/operators';
+import { IpService } from './ip.service';
 
 @Injectable()
 export class DownloadJobService {
 
-    constructor(private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
+    constructor(public ipService: IpService,private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
 
 
     
@@ -20,7 +21,7 @@ export class DownloadJobService {
     formData.append('jobName',filePath );
 
 
-    return this.httpClient.post("http://192.168.1.34:52440/downloadJob", formData,
+    return this.httpClient.post(`http://${this.ipService.ip}:52440/downloadJob`, formData,
     { responseType: 'arraybuffer'
 
 
