@@ -5,6 +5,7 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { Client } from '../Client';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+import { IpService } from '../services/ip.service';
 
 
 
@@ -24,7 +25,7 @@ export class ManageClientsComponent implements OnInit {
 
   counter:number;
 
-  constructor(public dialog: MatDialog,private httpClient: HttpClient,private authService: AuthService) { 
+  constructor(public ipService: IpService,public dialog: MatDialog,private httpClient: HttpClient,private authService: AuthService) { 
 
     this.getClients();
 
@@ -36,12 +37,12 @@ export class ManageClientsComponent implements OnInit {
   }
 
   getClients(){
-      this.httpClient.get('http://192.168.1.34:52440/clients').subscribe((res : Client[])=>{
+      this.httpClient.get(`http://${this.ipService.ip}:52440/clients`).subscribe((res : Client[])=>{
         console.log("res:"+res);
 
         this.dataSource = res;
       });
-      //this.table.renderRows();
+      //this.table.renderRows(); 
 
   }
 
@@ -71,7 +72,7 @@ export class ManageClientsComponent implements OnInit {
       jobCount:0
     });
 
-    this.httpClient.post(`http://192.168.1.34:52440/client/add`,row_obj).subscribe(
+    this.httpClient.post(`http://${this.ipService.ip}:52440/client/add`,row_obj).subscribe(
       (data:any)=>{
         if(data=="Signed in"){
           console.log("okok");
@@ -106,7 +107,7 @@ export class ManageClientsComponent implements OnInit {
 
       
 
-        this.httpClient.post(`http://192.168.1.34:52440/client/update`,formData).subscribe(
+        this.httpClient.post(`http://${this.ipService.ip}:52440/client/update`,formData).subscribe(
           (data:any)=>{
             if(data=="Signed in"){
               console.log("okok");
@@ -136,7 +137,7 @@ export class ManageClientsComponent implements OnInit {
 
 
 
-      this.httpClient.post(`http://192.168.1.34:52440/client/delete`,row_obj).subscribe(
+      this.httpClient.post(`http://${this.ipService.ip}:52440/client/delete`,row_obj).subscribe(
         (data:any)=>{
           if(data=="Signed in"){
             console.log("okok");

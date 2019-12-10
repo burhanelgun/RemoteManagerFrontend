@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../services/auth.service';
+import { IpService } from '../services/ip.service';
 
 @Component({
   selector: 'app-create-job',
@@ -24,7 +25,7 @@ export class CreateJobComponent implements OnInit {
   public inputTypeForParameterFile = ['From File', 'From UI'];
 
 
-  constructor(private httpClient: HttpClient,private authService: AuthService) { }
+  constructor(public ipService: IpService,private httpClient: HttpClient,private authService: AuthService) { }
 
   ngOnInit() {
     //default job type is Executable
@@ -57,7 +58,7 @@ public uploadExecutableJobFiles = () => {
   formData.append('executableFile',  this.job.executableFile);
   formData.append('jobType',  this.job.type);
 
-  this.httpClient.post(`http://192.168.1.34:52440/createexecutablejob`, formData, {reportProgress: true, observe: 'events'})
+  this.httpClient.post(`http://${this.ipService.ip}:52440/createexecutablejob`, formData, {reportProgress: true, observe: 'events'})
     .subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);
@@ -83,7 +84,7 @@ public uploadArchiveJobFolder = () => {
 
   }
 
-  this.httpClient.post(`http://192.168.1.34:52440/createarchiverjob`, formData, {reportProgress: true, observe: 'events'})
+  this.httpClient.post(`http://${this.ipService.ip}:52440/createarchiverjob`, formData, {reportProgress: true, observe: 'events'})
     .subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);

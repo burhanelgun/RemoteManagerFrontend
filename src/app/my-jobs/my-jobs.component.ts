@@ -3,6 +3,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { Job } from '../Job';
 import { JobService } from '../services/job.service';
+import { IpService } from '../services/ip.service';
 
 @Component({
   selector: 'app-my-jobs',
@@ -17,7 +18,7 @@ export class MyJobsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'status', 'type','clientName'];
   interval: any;
 
-  constructor(private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
+  constructor(public ipService: IpService,private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
 
 
   ngOnInit() {
@@ -30,12 +31,11 @@ export class MyJobsComponent implements OnInit {
 
   getJobs(){
   
-    this.httpClient.get(`http://192.168.1.34:52440/my-jobs/${this.authService.email}`).subscribe((res : any[])=>{
+    this.httpClient.get(`http://${this.ipService.ip}:52440/my-jobs/${this.authService.email}`).subscribe((res : any[])=>{
       this.jobs = res;
     });
 
   }
-
   getRecord(jobName :string){
 
     this.jobService.jobName = jobName;

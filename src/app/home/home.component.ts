@@ -3,6 +3,7 @@ import { Manager } from '../Manager';
 import {HttpClient} from '@angular/common/http';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { IpService } from '../services/ip.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
     password:""
   };
 
-  constructor(private httpClient: HttpClient,private router: Router,private authService: AuthService) {
+  constructor(private ipService: IpService,private httpClient: HttpClient,private router: Router,private authService: AuthService) {
     console.log("home component start")
 
   }
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   
 signIn():void {
     console.log("(SIGN IN)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
-   this.httpClient.post(`http://192.168.1.34:52440/user/signin`,this.manager).subscribe(
+   this.httpClient.post(`http://${this.ipService.ip}:52440/user/signin`,this.manager).subscribe(
       (data:any)=>{
         if(data=="Signed in"){
           console.log("Signed in block entered");
@@ -54,7 +55,7 @@ signIn():void {
   }
   signUp(): void {
     console.log("(SIGN UP)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
-        this.httpClient.post(`http://192.168.1.34:52440/user/signup`,this.manager).subscribe(
+        this.httpClient.post(`http://192.168.1.37:52440/user/signup`,this.manager).subscribe(
       (data:any)=>{
         console.log("DATAT="+data);
       }

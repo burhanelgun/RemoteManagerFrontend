@@ -26,6 +26,7 @@ import { JobService } from './services/job.service';
 import { DownloadJobService } from './services/download-job.service';
 import { ManageClientsComponent } from './manage-clients/manage-clients.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { IpService } from './services/ip.service';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
       AuthGuard,
       AuthService,
       JobService,
-      DownloadJobService
+      DownloadJobService,
+      IpService
    ],
    bootstrap: [
       AppComponent
