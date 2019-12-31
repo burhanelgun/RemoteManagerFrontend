@@ -28,6 +28,7 @@ import { ManageClientsComponent } from './manage-clients/manage-clients.componen
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { IpService } from './services/ip.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateNewJobComponent } from './create-new-job/create-new-job.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       MyJobsComponent,
       JobComponent,
       ManageClientsComponent,
-      DialogBoxComponent
+      DialogBoxComponent,
+      CreateNewJobComponent
    ],
    imports: [
       BrowserModule,

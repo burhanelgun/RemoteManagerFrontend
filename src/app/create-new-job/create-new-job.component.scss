@@ -1,0 +1,48 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+  }
+  
+  .sign-button button{
+    width: 50%;
+  }
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-bottom: 16px;
+    margin-top: 16px;
+    margin-left: 16px;
+
+  }
+
+  .example-radio-group {
+    margin: 10px 0;
+  }
+  
+  .form-group{
+    margin-top: 16px;
+  }
+
+  
+.sign-button{
+  margin-top: 16px;
+}
+
+.example-card {
+  min-width: 500px;
+  width: 70%;
+}
+
+.container {
+  margin-top: 5px;
+}
+.one {
+  float: left;
+}
+.two {
+  position: relative;
+  top: -7px;
+}
+
+
