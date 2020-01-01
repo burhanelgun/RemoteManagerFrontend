@@ -54,30 +54,45 @@ export class CreateNewJobComponent implements OnInit {
 handleCommandFileInput(files: FileList) {
     this.job.commandFile = files.item(0);
 }
-handleParametersFileInput(files: FileList) {
-  this.job.parametersFile = files.item(0);
-}
 handleExecutableFileInput(files: FileList) {
   this.job.executableFile = files.item(0);
 }
-
 handleArchiveFolder(fileList: FileList) {
   this.job.files=fileList;
 }
 
+handlePythonScriptInput(files: FileList) {
+  this.job.pythonScriptFile = files.item(0);
+}
+handleExecutableFilesInput(files: FileList) {
+  this.job.executableFiles = files;
+}
+handleParametersFileInput(files: FileList) {
+  this.job.parametersFile = files.item(0);
+}
+handleInputFilesInput(fileList: FileList) {
+  this.job.inputFiles=fileList;
+}
 
-public uploadExecutableJobFiles = () => {
 
+public uploadSingleJobFiles = () => {
+  console.log("memrhabalar");
   const formData = new FormData();
-  console.log("tto:"+this.authService.email);
   formData.append('email',this.authService.email );
   formData.append('name', this.job.jobName);
-  formData.append('commandFile',  this.job.commandFile);
+  formData.append('pythonScriptFile',  this.job.pythonScriptFile);
   formData.append('parametersFile',  this.job.parametersFile);
-  formData.append('executableFile',  this.job.executableFile);
+
+  for (var i = 0; i < this.job.executableFiles.length; i++) {
+    formData.append("executableFiles",  this.job.executableFiles.item(i));
+  }
+  for (var i = 0; i < this.job.inputFiles.length; i++) {
+    formData.append("inputFiles",  this.job.inputFiles.item(i));
+  }
   formData.append('jobType',  this.job.type);
 
-  this.httpClient.post(`http://${this.ipService.ip}:52440/createexecutablejob`, formData, {reportProgress: true, observe: 'events'})
+
+  this.httpClient.post(`http://${this.ipService.ip}:52440/createsinglejob`, formData, {reportProgress: true, observe: 'events'})
     .subscribe(event => {
       if (event.type === HttpEventType.UploadProgress)
         this.progress = Math.round(100 * event.loaded / event.total);

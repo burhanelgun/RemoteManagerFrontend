@@ -2,9 +2,11 @@
     <mat-toolbar-row>
       <h1>Remote Manager</h1>
       <div>
-        <a mat-button [routerLink]="'/create-job'"> Create Job </a>
+
+        <a mat-button [routerLink]="'/create-new-job'">  Create New Job </a>
         <a mat-button [routerLink]="'/my-jobs'"> My Jobs </a>
         <a  *ngIf="authService.email=='admin'" mat-button [routerLink]="'/manage-clients'"> Manage Clients </a>
+        <a mat-button [routerLink]="'/create-job'"> Create Job </a>
         
        <!-- <a mat-button [routerLink]="'/joblist'"> Job List </a>
         <a mat-button [routerLink]="'/contacts'"> Job Status </a>

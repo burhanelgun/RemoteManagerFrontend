@@ -17,14 +17,14 @@
           <label for="file">Upload Python Script</label>
           <input type="file"
                 id="file"
-                (change)="handleCommandFileInput($event.target.files)">
+                (change)="handlePythonScriptInput($event.target.files)">
         </div>
 
         <div class="form-group">
           <label for="file">Upload Executable Files</label>
-          <input type="file"
+          <input type="file" multiple
                 id="file"
-                (change)="handleCommandFileInput($event.target.files)">
+                (change)="handleExecutableFilesInput($event.target.files)">
         </div>
   
         <div class="form-group">
@@ -36,13 +36,13 @@
   
         <div class="form-group">
             <label for="file">Upload Input Files</label>
-            <input type="file"
+            <input type="file" multiple
                   id="file"
-                  (change)="handleExecutableFileInput($event.target.files)">
+                  (change)="handleInputFilesInput($event.target.files)">
         </div>
   
         <div class="sign-button">
-          <button mat-raised-button (click)="uploadExecutableJobFiles()" color="primary" >Create job</button>
+          <button mat-raised-button (click)="uploadSingleJobFiles()" color="primary" >Create job</button>
         </div>
   
       </div>
@@ -157,7 +157,7 @@
       
             <div class="form-group">
                 <label for="file">Upload Different Input Files</label>
-                <input type="file"
+                <input type="file" 
                       id="file"
                       (change)="handleExecutableFileInput($event.target.files)">
             </div>
