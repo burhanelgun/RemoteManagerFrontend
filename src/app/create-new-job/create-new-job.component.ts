@@ -89,7 +89,7 @@ public uploadSingleJobFiles = () => {
   for (var i = 0; i < this.job.inputFiles.length; i++) {
     formData.append("inputFiles",  this.job.inputFiles.item(i));
   }
-  formData.append('jobType',  this.job.type);
+  formData.append('jobType',  this.selectedJobType);
 
 
   this.httpClient.post(`http://${this.ipService.ip}:52440/createsinglejob`, formData, {reportProgress: true, observe: 'events'})
