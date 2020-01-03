@@ -4,6 +4,7 @@ export class Job {
     parametersFile: File;
     executableFile: File;
     executableFiles: FileList;
+    parametersFiles: FileList;
     inputFiles: FileList;
     pythonScriptFile: File;
     files: FileList;

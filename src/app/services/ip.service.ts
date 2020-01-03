@@ -3,5 +3,5 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class IpService {
-  public ip:string ='192.168.56.1';
+  public ip:string ='192.168.1.36';
 }

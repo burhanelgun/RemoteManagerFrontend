@@ -73,6 +73,67 @@ handleParametersFileInput(files: FileList) {
 handleInputFilesInput(fileList: FileList) {
   this.job.inputFiles=fileList;
 }
+handleParametersFilesInput(fileList: FileList) {
+  this.job.parametersFiles = fileList
+}
+
+
+
+uploadInputsBatchJobFile= () => {
+  console.log("memrhabalar");
+  const formData = new FormData();
+  formData.append('email',this.authService.email );
+  formData.append('name', this.job.jobName);
+  formData.append('pythonScriptFile',  this.job.pythonScriptFile);
+  formData.append('parametersFile',  this.job.parametersFile);
+
+  for (var i = 0; i < this.job.executableFiles.length; i++) {
+    formData.append("executableFiles",  this.job.executableFiles.item(i));
+  }
+  for (var i = 0; i < this.job.inputFiles.length; i++) {
+    formData.append("inputFiles",  this.job.inputFiles.item(i));
+  }
+  formData.append('jobType',  this.job.type);
+
+
+  this.httpClient.post(`http://${this.ipService.ip}:52440/createinputsbatchjob`, formData, {reportProgress: true, observe: 'events'})
+    .subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress)
+        this.progress = Math.round(100 * event.loaded / event.total);
+      else if (event.type === HttpEventType.Response) {
+        this.message = 'Upload success.';
+        this.onUploadFinished.emit(event.body);
+      }
+    });
+}
+
+uploadParametersBatchJobFile= () => {
+  console.log("memrhabalar");
+  const formData = new FormData();
+  formData.append('email',this.authService.email );
+  formData.append('name', this.job.jobName);
+  formData.append('pythonScriptFile',  this.job.pythonScriptFile);
+  formData.append('parametersFile',  this.job.parametersFile);
+
+  for (var i = 0; i < this.job.executableFiles.length; i++) {
+    formData.append("executableFiles",  this.job.executableFiles.item(i));
+  }
+  for (var i = 0; i < this.job.inputFiles.length; i++) {
+    formData.append("inputFiles",  this.job.inputFiles.item(i));
+  }
+  formData.append('jobType',  this.job.type);
+
+
+  this.httpClient.post(`http://${this.ipService.ip}:52440/createparametersbatchjob`, formData, {reportProgress: true, observe: 'events'})
+    .subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress)
+        this.progress = Math.round(100 * event.loaded / event.total);
+      else if (event.type === HttpEventType.Response) {
+        this.message = 'Upload success.';
+        this.onUploadFinished.emit(event.body);
+      }
+    });
+}
 
 
 public uploadSingleJobFiles = () => {

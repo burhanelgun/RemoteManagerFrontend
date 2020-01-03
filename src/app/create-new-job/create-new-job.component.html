@@ -102,18 +102,18 @@
             <label for="file">Upload Python Script</label>
             <input type="file"
                   id="file"
-                  (change)="handleCommandFileInput($event.target.files)">
+                  (change)="handlePythonScriptInput($event.target.files)">
           </div>
   
           <div class="form-group">
             <label for="file">Upload Executable Files</label>
-            <input type="file"
+            <input type="file" multiple
                   id="file"
-                  (change)="handleCommandFileInput($event.target.files)">
+                  (change)="handleExecutableFilesInput($event.target.files)">
           </div>
     
           <div class="form-group">
-              <label for="file">Upload Different Parameters Files</label>
+              <label for="file">Upload Different Parameters File</label>
               <input type="file"
                     id="file"
                     (change)="handleParametersFileInput($event.target.files)">
@@ -121,50 +121,50 @@
     
           <div class="form-group">
               <label for="file">Upload Input Files</label>
-              <input type="file"
+              <input type="file" multiple
                     id="file"
-                    (change)="handleExecutableFileInput($event.target.files)">
+                    (change)="handleInputFilesInput($event.target.files)">
           </div>
     
           <div class="sign-button">
-            <button mat-raised-button (click)="uploadExecutableJobFiles()" color="primary" >Create Job Batch</button>
+            <button mat-raised-button (click)="uploadParametersBatchJobFile()" color="primary" >Create Job Batch</button>
           </div>
         
       </div>
 
       <div class="executable-form" *ngIf="job.type=='Different Input Files'">
 
-            <div class="form-group">
-              <label for="file">Upload Python Script</label>
-              <input type="file"
-                    id="file"
-                    (change)="handleCommandFileInput($event.target.files)">
-            </div>
+          <div class="form-group">
+            <label for="file">Upload Python Script</label>
+            <input type="file"
+                  id="file"
+                  (change)="handlePythonScriptInput($event.target.files)">
+          </div>
 
-            <div class="form-group">
-              <label for="file">Upload Executable Files</label>
+          <div class="form-group">
+            <label for="file">Upload Executable Files</label>
+            <input type="file" multiple
+                  id="file"
+                  (change)="handleExecutableFilesInput($event.target.files)">
+          </div>
+    
+          <div class="form-group">
+              <label for="file">Upload Parameters File</label>
               <input type="file"
                     id="file"
-                    (change)="handleCommandFileInput($event.target.files)">
-            </div>
-      
-            <div class="form-group">
-                <label for="file">Upload Parameters File</label>
-                <input type="file"
-                      id="file"
-                      (change)="handleParametersFileInput($event.target.files)">
-            </div>
-      
-            <div class="form-group">
-                <label for="file">Upload Different Input Files</label>
-                <input type="file" 
-                      id="file"
-                      (change)="handleExecutableFileInput($event.target.files)">
-            </div>
+                    (change)="handleParametersFileInput($event.target.files)">
+          </div>
+    
+          <div class="form-group">
+              <label for="file">Upload Different Input Files</label>
+              <input type="file" webkitdirectory directory multiple
+                    id="file"
+                    (change)="handleInputFilesInput($event.target.files)">
+          </div>
       
 
           <div class="sign-button">
-            <button mat-raised-button (click)="uploadExecutableJobFiles()" color="primary" >Create Job Batch</button>
+            <button mat-raised-button (click)="uploadInputsBatchJobFile()" color="primary" >Create Job Batch</button>
           </div>
 
 
