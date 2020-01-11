@@ -29,6 +29,9 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { IpService } from './services/ip.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateNewJobComponent } from './create-new-job/create-new-job.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MyJobListComponent } from './my-job-list/my-job-list.component';
+import { SubJobComponent } from './sub-job/sub-job.component';
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { CreateNewJobComponent } from './create-new-job/create-new-job.component
       JobComponent,
       ManageClientsComponent,
       DialogBoxComponent,
-      CreateNewJobComponent
+      CreateNewJobComponent,
+      MyJobListComponent,
+      SubJobComponent
    ],
    imports: [
       BrowserModule,
@@ -82,6 +87,7 @@ import { CreateNewJobComponent } from './create-new-job/create-new-job.component
       MatInputModule,
       MatButtonModule,
       MatInputModule,
+      MatProgressBarModule,
       ReactiveFormsModule
    ],
    providers: [
