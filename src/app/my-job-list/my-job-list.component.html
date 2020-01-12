@@ -34,7 +34,11 @@
         </div>
 
         <div  *ngIf="element.type!='Single Job'">
-          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          <mat-progress-bar mode="determinate" value="{{element.progress}} "></mat-progress-bar>
+
+          <img  *ngIf="element.progress=='100'" src="../../assets/images/done-icon.jpg"  height="30" width="30" title="White flower" alt="Flower">
+          
+
         </div>
 
 

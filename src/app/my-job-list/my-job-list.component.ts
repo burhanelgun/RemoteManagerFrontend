@@ -26,7 +26,7 @@ export class MyJobListComponent implements OnInit {
     this.getJobs();
     this.interval = setInterval(() => { 
       this.getJobs();
-    }, 5000);
+    }, 500);
   }
 
 
