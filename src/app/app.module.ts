@@ -11,14 +11,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import {MatCardModule} from '@angular/material/card';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatDialogModule } from  '@angular/material';
-import { CreateJobComponent } from './create-job/create-job.component';
 import {MatRadioModule} from '@angular/material/radio';
-import { MyJobsComponent } from './my-jobs/my-jobs.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatRippleModule} from '@angular/material/core';
 import { JobComponent } from './job/job.component';
@@ -38,9 +35,6 @@ import { SubJobComponent } from './sub-job/sub-job.component';
    declarations: [
       AppComponent,
       HomeComponent,
-      DashboardComponent,
-      CreateJobComponent,
-      MyJobsComponent,
       JobComponent,
       ManageClientsComponent,
       DialogBoxComponent,

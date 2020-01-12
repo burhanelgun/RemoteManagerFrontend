@@ -38,7 +38,7 @@ signIn():void {
           this.authService.isAuth=true;
           this.authService.email=this.manager.email;
           console.log("navigate dashboard start");
-          this.router.navigate(['create-job']);
+          this.router.navigate(['create-new-job']);
           console.log("navigated dashboard done");
           console.log("this.homeComponent.isAuth setted true")
 
