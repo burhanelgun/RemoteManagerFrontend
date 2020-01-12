@@ -37,11 +37,14 @@ export class MyJobListComponent implements OnInit {
     });
 
   }
-  getRecord(jobName :string,type :string){
-
+  getRecord(jobName :string,type :string,status :string,progress :string,description :string){
     if(type=="Single Job"){
       
       this.jobService.jobName = jobName;
+      this.jobService.type = type;
+      this.jobService.status = status;
+      this.jobService.progress = progress;
+      this.jobService.description = description;
 
       this.router.navigate(['/job']);
     }

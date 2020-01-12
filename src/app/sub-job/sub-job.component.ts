@@ -34,9 +34,13 @@ getJobs(){
   });
 
 }
-getRecord(jobName :string){
+getRecord(jobName :string,type :string,status :string,progress :string,description :string){
 
   this.jobService.jobName = jobName;
+  this.jobService.type = type;
+  this.jobService.status = status;
+  this.jobService.progress = progress;
+  this.jobService.description = description;
 
 
 }

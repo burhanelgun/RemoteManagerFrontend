@@ -1,3 +1,22 @@
-<p>{{jobService.jobName}}</p>
+<h1 class="center" >{{jobService.jobName}}</h1>
 
-<a (click)="downloadFiles()"><img  src="../../assets/images/folder-image.png"  height="42" width="42" title="White flower" alt="Flower"></a>
+<a  class="center" *ngIf="jobService.status=='finish'" (click)="downloadFiles()"><img  src="../../assets/images/folder-image.png"  height="42" width="42" title="Download Job" alt="Download Job"></a >
+<div class="center">
+   
+    <mat-card>
+
+        <mat-list role="list">
+            <mat-list-item role="listitem"><b>Type</b>: {{jobService.type}}</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="jobService.status=='finish'"><b>Status</b>: Done</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="jobService.status=='fail'"><b>Status</b>: Fail</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="jobService.status=='working'"><b>Status</b>: Working</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="jobService.status=='finish'"><b>Result</b>:Success</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="jobService.status=='fail'"><b>Result</b>: {{jobService.description}}</mat-list-item>
+        </mat-list>
+
+    </mat-card>
+
+
+
+</div>
+

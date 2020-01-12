@@ -40,8 +40,7 @@
     
     class="element-row" 
             [class.expanded]="expandedElement == row"
-            (click)="expandedElement = row; getRecord(row.name)" [routerLink]="'/job'"></tr>
-    
+            (click)="expandedElement = row;getRecord(row.name,row.type,row.status,row.progress,row.description)" [routerLink]="'/job'"></tr>
     
 </table>
   
