@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { DownloadJobService } from '../services/download-job.service';
 import { saveAs } from 'file-saver';
+import { IpService } from '../services/ip.service';
 
 @Component({
   selector: 'app-job',
@@ -12,21 +13,32 @@ import { saveAs } from 'file-saver';
 })
 export class JobComponent implements OnInit {
 
-  constructor(private downloadJobService: DownloadJobService,private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
+  constructor(private ipService: IpService,private downloadJobService: DownloadJobService,private httpClient: HttpClient,private authService: AuthService,private jobService: JobService) { }
 
+  interval: any;
+  job: any;
 
-
-
-
+ 
   ngOnInit() {
-    this.getJobDatas();
+    this.getJob();
+    this.interval = setInterval(() => { 
+      this.getJob();
+    }, 500);
   }
 
+
+  getJob(){
   
-  getJobDatas(){
-  
-   
+    this.httpClient.get(`http://${this.ipService.ip}:52440/get-job/${this.authService.email}/${this.jobService.jobName}`).subscribe((res : any)=>{
+      this.job = res;
+      console.log("job:"+this.job);
+    });
+
   }
+
+
+
+
 
 
   downloadFiles(){  

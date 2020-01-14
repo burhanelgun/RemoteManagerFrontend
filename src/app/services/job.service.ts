@@ -9,5 +9,6 @@ export class JobService {
   status: string;
   progress: string;
   description: string;
+  jobs =[]; 
 
 }
