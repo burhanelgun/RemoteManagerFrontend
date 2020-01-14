@@ -55,7 +55,7 @@ signIn():void {
   }
   signUp(): void {
     console.log("(SIGN UP)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
-        this.httpClient.post(`http://192.168.1.37:52440/user/signup`,this.manager).subscribe(
+        this.httpClient.post(`http://${this.ipService.ip}:52440/user/signup`,this.manager).subscribe(
       (data:any)=>{
         console.log("DATAT="+data);
       }

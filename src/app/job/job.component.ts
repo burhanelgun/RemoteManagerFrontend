@@ -56,7 +56,38 @@ export class JobComponent implements OnInit {
           );
   }
 
+  stopJob(){  
 
+
+
+
+    const formData = new FormData();
+    formData.append('email',this.authService.email );
+    formData.append('jobName',this.jobService.jobName );
+
+
+
+  
+
+    this.httpClient.post(`http://${this.ipService.ip}:52440/job/stopJob`,formData).subscribe(
+      (data:any)=>{
+        if(data=="Signed in"){
+          console.log("ok");
+
+
+        }
+        else{
+          console.log("problem");
+
+        }
+
+  
+      });
+
+
+   
+ 
+  }
 
 
 }

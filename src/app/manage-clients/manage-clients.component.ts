@@ -110,7 +110,7 @@ export class ManageClientsComponent implements OnInit {
         this.httpClient.post(`http://${this.ipService.ip}:52440/client/update`,formData).subscribe(
           (data:any)=>{
             if(data=="Signed in"){
-              console.log("okok");
+              console.log("ok");
     
     
             }
@@ -140,7 +140,7 @@ export class ManageClientsComponent implements OnInit {
       this.httpClient.post(`http://${this.ipService.ip}:52440/client/delete`,row_obj).subscribe(
         (data:any)=>{
           if(data=="Signed in"){
-            console.log("okok");
+            console.log("ok");
   
   
           }
