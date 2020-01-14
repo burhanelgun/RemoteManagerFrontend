@@ -38,11 +38,9 @@ export class ManageClientsComponent implements OnInit {
 
   getClients(){
       this.httpClient.get(`http://${this.ipService.ip}:52440/clients`).subscribe((res : Client[])=>{
-        console.log("res:"+res);
 
         this.dataSource = res;
       });
-      //this.table.renderRows(); 
 
   }
 
@@ -75,12 +73,10 @@ export class ManageClientsComponent implements OnInit {
     this.httpClient.post(`http://${this.ipService.ip}:52440/client/add`,row_obj).subscribe(
       (data:any)=>{
         if(data=="Signed in"){
-          console.log("okok");
 
 
         }
         else{
-          console.log("problem");
 
         }
 
@@ -110,12 +106,10 @@ export class ManageClientsComponent implements OnInit {
         this.httpClient.post(`http://${this.ipService.ip}:52440/client/update`,formData).subscribe(
           (data:any)=>{
             if(data=="Signed in"){
-              console.log("ok");
     
     
             }
             else{
-              console.log("problem");
     
             }
     
@@ -140,12 +134,10 @@ export class ManageClientsComponent implements OnInit {
       this.httpClient.post(`http://${this.ipService.ip}:52440/client/delete`,row_obj).subscribe(
         (data:any)=>{
           if(data=="Signed in"){
-            console.log("ok");
   
   
           }
           else{
-            console.log("problem");
   
           }
   

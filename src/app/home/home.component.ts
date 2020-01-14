@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(private ipService: IpService,private httpClient: HttpClient,private router: Router,private authService: AuthService) {
-    console.log("home component start")
 
   }
 
@@ -30,17 +29,13 @@ export class HomeComponent implements OnInit {
 
   
 signIn():void {
-    console.log("(SIGN IN)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
    this.httpClient.post(`http://${this.ipService.ip}:52440/user/signin`,this.manager).subscribe(
       (data:any)=>{
         if(data=="Signed in"){
-          console.log("Signed in block entered");
           this.authService.isAuth=true;
           this.authService.email=this.manager.email;
-          console.log("navigate dashboard start");
           this.router.navigate(['create-new-job']);
-          console.log("navigated dashboard done");
-          console.log("this.homeComponent.isAuth setted true")
+
 
         }
         else{
@@ -54,10 +49,8 @@ signIn():void {
 
   }
   signUp(): void {
-    console.log("(SIGN UP)"+" EMAIL:"+this.manager.email+" PASSWORD:"+this.manager.password);
         this.httpClient.post(`http://${this.ipService.ip}:52440/user/signup`,this.manager).subscribe(
       (data:any)=>{
-        console.log("DATAT="+data);
       }
     )
   }

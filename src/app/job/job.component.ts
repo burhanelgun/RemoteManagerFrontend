@@ -31,7 +31,6 @@ export class JobComponent implements OnInit {
   
     this.httpClient.get(`http://${this.ipService.ip}:52440/get-job/${this.authService.email}/${this.jobService.jobName}`).subscribe((res : any)=>{
       this.job = res;
-      console.log("job:"+this.job);
     });
 
   }
@@ -72,12 +71,10 @@ export class JobComponent implements OnInit {
     this.httpClient.post(`http://${this.ipService.ip}:52440/job/stopJob`,formData).subscribe(
       (data:any)=>{
         if(data=="Signed in"){
-          console.log("ok");
 
 
         }
         else{
-          console.log("problem");
 
         }
 

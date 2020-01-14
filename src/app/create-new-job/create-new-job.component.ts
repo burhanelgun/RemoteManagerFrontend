@@ -6,6 +6,8 @@ import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../services/auth.service';
 import { IpService } from '../services/ip.service';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-create-new-job',
@@ -25,11 +27,12 @@ export class CreateNewJobComponent implements OnInit {
   public jobTypes = ['Single Job', 'Job Batch'];
   public executableJobTypes = ['Different Parameters', 'Different Input Files'];
   public selectedJobType = this.jobTypes[0];
+  durationInSeconds = 5;
 
   productForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder,public ipService: IpService,private httpClient: HttpClient,private authService: AuthService) { }
+  constructor(private _snackBar: MatSnackBar,private fb: FormBuilder,public ipService: IpService,private httpClient: HttpClient,private authService: AuthService) { }
 
   ngOnInit() {
     //default job type is Executable
@@ -49,7 +52,11 @@ export class CreateNewJobComponent implements OnInit {
   deleteParameterSet(index) {
     this.parameterSets.removeAt(index);
   }
-
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
 
 handleCommandFileInput(files: FileList) {
     this.job.commandFile = files.item(0);
@@ -80,7 +87,7 @@ handleParametersFilesInput(fileList: FileList) {
 
 
 uploadInputsBatchJobFile= () => {
-  console.log("memrhabalar");
+  this.openSnackBar()
   const formData = new FormData();
   formData.append('email',this.authService.email );
   formData.append('name', this.job.jobName);
@@ -108,7 +115,7 @@ uploadInputsBatchJobFile= () => {
 }
 
 uploadParametersBatchJobFile= () => {
-  console.log("memrhabalar");
+  this.openSnackBar()
   const formData = new FormData();
   formData.append('email',this.authService.email );
   formData.append('name', this.job.jobName);
@@ -137,7 +144,7 @@ uploadParametersBatchJobFile= () => {
 
 
 public uploadSingleJobFiles = () => {
-  console.log("memrhabalar");
+  this.openSnackBar()
   const formData = new FormData();
   formData.append('email',this.authService.email );
   formData.append('name', this.job.jobName);
@@ -164,59 +171,7 @@ public uploadSingleJobFiles = () => {
     });
 }
 
-public uploadArchiveJobFolder = () => {
 
-  const formData = new FormData();
-  console.log("tto:"+this.authService.email);
-  formData.append('email',this.authService.email );
-  formData.append('name', this.job.jobName);
-  formData.append('executableFile',  this.job.executableFile);
-  formData.append('jobType',  this.selectedJobType);
-
-  for (var i = 0; i < this.job.files.length; i++) {
-    formData.append("folders",  this.job.files.item(i));
-    //console.log("folders = "+ this.job.files.item(i));
-
-  }
-
-  this.httpClient.post(`http://${this.ipService.ip}:52440/createarchiverjob`, formData, {reportProgress: true, observe: 'events'})
-    .subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress)
-        this.progress = Math.round(100 * event.loaded / event.total);
-      else if (event.type === HttpEventType.Response) {
-        this.message = 'Upload success.';
-        this.onUploadFinished.emit(event.body);
-      }
-    });
-}
-
-public createDifferentParamExecutables = () => {
-
-  const formData = new FormData();
-  formData.append('email',this.authService.email );
-  formData.append('name', this.job.jobName);
-  formData.append('command', this.command);
-  formData.append('executableFile',  this.job.executableFile);
-  formData.append('jobType',  this.job.type);
-
-
-  for (var i = 0; i < this.parameterSets.length; i++) {
-    console.log("folders = "+ this.productForm.value.parameter_sets[i].point);
-
-    formData.append("parameterSets",  this.productForm.value.parameter_sets[i].point);
-
-  }
-
-  this.httpClient.post(`http://${this.ipService.ip}:52440/createdifferentparamexecutables`, formData, {reportProgress: true, observe: 'events'})
-    .subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress)
-        this.progress = Math.round(100 * event.loaded / event.total);
-      else if (event.type === HttpEventType.Response) {
-        this.message = 'Upload success.';
-        this.onUploadFinished.emit(event.body);
-      }
-    });
-}
 
 
 

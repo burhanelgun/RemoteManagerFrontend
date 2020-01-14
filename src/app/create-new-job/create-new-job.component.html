@@ -14,14 +14,14 @@
       <div class="executable-form" *ngIf="selectedJobType=='Single Job'">
 
         <div class="form-group">
-          <label for="file">Upload Python Script</label>
+          <label for="file">Upload Python Script : </label>
           <input type="file"
                 id="file"
                 (change)="handlePythonScriptInput($event.target.files)">
         </div>
 
         <div class="form-group">
-          <label for="file">Upload Executable Files</label>
+          <label for="file">Upload Executable Files : </label>
           <input type="file" multiple
                 id="file"
                 (change)="handleExecutableFilesInput($event.target.files)">
@@ -29,7 +29,7 @@
   
   
         <div class="form-group">
-            <label for="file">Upload Input Files</label>
+            <label for="file">Upload Input Files : </label>
             <input type="file" multiple
                   id="file"
                   (change)="handleInputFilesInput($event.target.files)">
@@ -93,28 +93,28 @@
         <div class="executable-form" *ngIf="job.type=='Different Parameters'">
     
           <div class="form-group">
-            <label for="file">Upload Python Script</label>
+            <label for="file">Upload Python Script : </label>
             <input type="file"
                   id="file"
                   (change)="handlePythonScriptInput($event.target.files)">
           </div>
   
           <div class="form-group">
-            <label for="file">Upload Executable Files</label>
+            <label for="file">Upload Executable Files : </label>
             <input type="file" multiple
                   id="file"
                   (change)="handleExecutableFilesInput($event.target.files)">
           </div>
     
           <div class="form-group">
-              <label for="file">Upload Different Parameters File</label>
+              <label for="file">Upload Different Parameters File : </label>
               <input type="file"
                     id="file"
                     (change)="handleParametersFileInput($event.target.files)">
           </div>
     
           <div class="form-group">
-              <label for="file">Upload Input Files</label>
+              <label for="file">Upload Input Files : </label>
               <input type="file" multiple
                     id="file"
                     (change)="handleInputFilesInput($event.target.files)">
@@ -129,28 +129,28 @@
       <div class="executable-form" *ngIf="job.type=='Different Input Files'">
 
           <div class="form-group">
-            <label for="file">Upload Python Script</label>
+            <label for="file">Upload Python Script : </label>
             <input type="file"
                   id="file"
                   (change)="handlePythonScriptInput($event.target.files)">
           </div>
 
           <div class="form-group">
-            <label for="file">Upload Executable Files</label>
+            <label for="file">Upload Executable Files : </label>
             <input type="file" multiple
                   id="file"
                   (change)="handleExecutableFilesInput($event.target.files)">
           </div>
     
           <div class="form-group">
-              <label for="file">Upload Parameters File</label>
+              <label for="file">Upload Parameters File : </label>
               <input type="file"
                     id="file"
                     (change)="handleParametersFileInput($event.target.files)">
           </div>
     
           <div class="form-group">
-              <label for="file">Upload Different Input Files</label>
+              <label for="file">Upload Different Input Files : </label>
               <input type="file" webkitdirectory directory multiple
                     id="file"
                     (change)="handleInputFilesInput($event.target.files)">

@@ -29,6 +29,8 @@ import { CreateNewJobComponent } from './create-new-job/create-new-job.component
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MyJobListComponent } from './my-job-list/my-job-list.component';
 import { SubJobComponent } from './sub-job/sub-job.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { SubJobComponent } from './sub-job/sub-job.component';
       DialogBoxComponent,
       CreateNewJobComponent,
       MyJobListComponent,
-      SubJobComponent
+      SubJobComponent,
+      SnackBarComponent
    ],
    imports: [
       BrowserModule,
@@ -82,7 +85,8 @@ import { SubJobComponent } from './sub-job/sub-job.component';
       MatButtonModule,
       MatInputModule,
       MatProgressBarModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatSnackBarModule
    ],
    providers: [
       AuthGuard,
@@ -95,7 +99,8 @@ import { SubJobComponent } from './sub-job/sub-job.component';
       AppComponent
    ],
    entryComponents: [
-      DialogBoxComponent
+      DialogBoxComponent,
+      SnackBarComponent
     ],
 })
 export class AppModule { }
